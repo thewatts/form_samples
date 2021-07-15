@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# From: https://www.architecturaldigest.com/gallery/famous-houses-slideshow
+house_attributes = [
+  {
+    name: "The Lake Palace Hotel",
+    address: "Pichola, Udaipur, Rajasthan 313001, India",
+  },
+  {
+    name: "Tai Fu Tai",
+    address: "Castle Peak Road (San Tin), San Tin, Hong Kong",
+  },
+  {
+    name: "Monticello",
+    address: "931 Thomas Jefferson Pkwy, Charlottesville, VA 22902"
+  },
+]
+
+House.create!(house_attributes)
