@@ -22,4 +22,7 @@ house_attributes = [
   },
 ]
 
-House.create!(house_attributes)
+if House.none?
+  puts "Seeding database 'db/development.sqlite3'"
+  House.create!(house_attributes)
+end

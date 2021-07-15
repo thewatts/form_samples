@@ -1,6 +1,4 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: [:show, :edit, :update, :destroy]
-
   # GET /houses
   def index
     @houses = House.all
@@ -8,23 +6,25 @@ class HousesController < ApplicationController
 
   # GET /houses/1
   def show
+    @house = House.find(params[:id])
   end
 
   # GET /houses/new
   def new
-    @house = House.new
+    @house = HouseForm.new
   end
 
   # GET /houses/1/edit
   def edit
+    @house = HouseForm.new(id: params[:id])
   end
 
   # POST /houses
   def create
-    @house = House.new(house_params)
+    @house_form = HouseForm.new(house_params)
 
-    if @house.save
-      redirect_to @house, notice: 'House was successfully created.'
+    if @house_form.save
+      redirect_to @house_form.house, notice: 'House was successfully created.'
     else
       render :new
     end
@@ -32,8 +32,10 @@ class HousesController < ApplicationController
 
   # PATCH/PUT /houses/1
   def update
-    if @house.update(house_params)
-      redirect_to @house, notice: 'House was successfully updated.'
+    @house = HouseForm.new(house_params.merge(id: params[:id]))
+
+    if @house.save
+      redirect_to @house_form, notice: 'House was successfully updated.'
     else
       render :edit
     end
@@ -41,16 +43,13 @@ class HousesController < ApplicationController
 
   # DELETE /houses/1
   def destroy
+    @house = House.find(params[:id])
     @house.destroy
+
     redirect_to houses_url, notice: 'House was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_house
-      @house = House.find(params[:id])
-    end
-
     # Only allow a list of trusted parameters through.
     def house_params
       params.require(:house).permit(:name, :address)
