@@ -24,7 +24,7 @@ class HousesController < ApplicationController
     @house_form = HouseForm.new(house_params)
 
     if @house_form.save
-      redirect_to @house_form.house, notice: 'House was successfully created.'
+      redirect_to @house_form, notice: 'House was successfully created.'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class HousesController < ApplicationController
     @house = HouseForm.new(house_params.merge(id: params[:id]))
 
     if @house.save
-      redirect_to @house_form, notice: 'House was successfully updated.'
+      redirect_to @house, notice: 'House was successfully updated.'
     else
       render :edit
     end

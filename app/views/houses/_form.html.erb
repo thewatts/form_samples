@@ -1,4 +1,4 @@
-<%= form_with(model: house, url: houses_path, scope: :house) do |form| %>
+<%= form_with(model: house) do |form| %>
   <% if house.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>

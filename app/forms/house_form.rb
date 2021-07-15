@@ -1,7 +1,9 @@
 class HouseForm < YAAF::Form
   attr_accessor :id, :name, :address
 
-  delegate :to_param, :persisted?, to: :house
+  delegate :to_param,
+    :persisted?,
+    :model_name, to: :house
 
   def initialize(attributes = {})
     super(attributes)
